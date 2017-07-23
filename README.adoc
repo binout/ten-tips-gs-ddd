@@ -1,0 +1,5 @@
+= Ten tips for getting started with domain driven design
+
+== Jug Summer Camp 2017
+
+http://www.jugsummercamp.org/edition/8/presentation/1174

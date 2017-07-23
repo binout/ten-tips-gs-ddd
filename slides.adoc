@@ -1,0 +1,42 @@
+= 10 conseils pour réussir ses premiers pas en DDD
+:icons: font
+
+image::jugsummercamp.png[float="right"]
+
+== Me
+
+image::avatar.png[float="right"]
+
+icon:twitter[] @binout +
+icon:github[] https://github.com/binout
+
+* Développeur Java depuis plus de 10 ans
+
+image::bordeauxjug.png[float="right"]
+
+* Membre du Bordeaux JUG
+
+image::asciidoctor.png[float="right"]
+
+* Commiteur Asciidoctor
+
+image::lectra.png[float="right"]
+
+* Technical Leader chez Lectra,
+numéro un mondial des solutions dédiées à l'industrie du textile (machines et logiciels)
+
+== TODO
+
+* Nommage des entités et services
+* Structure de package
+* Test BDD
+* Documentation annotation sur les principes
+* Living documentation : domain diagram
+* Dépasser les a priori
+** Jpa / xml
+** injection par Constructeur
+** Constructeur / getter / setter
+* Application Service
+* Ddd vite fait
+* Framework à l'extérieur
+* Impliquer son PO
