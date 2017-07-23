@@ -18,8 +18,9 @@ after_failure:
 
 after_success:
   - cd output ; mv README.html index.html ; cp -R ../images images
+  - mkdir deckjs ; curl -LkSs https://github.com/imakewebthings/deck.js/archive/1.1.0.tar.gz | tar xfz - -C deckjs --strip-components=1
   - git init
   - git config user.name "${GH_USER_NAME}"
   - git config user.email "{GH_USER_EMAIL}"
   - git add . ; git commit -m "Deploy to GitHub Pages"
-  - git push --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1
+  - git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages > /dev/null 2>&1
