@@ -1,26 +1,31 @@
 = 10 conseils pour réussir ses premiers pas en DDD
 :icons: font
+:deckjs_theme: swiss
+:deckjs_transition: fade
+:navigation: true
+:goto: true
+:status: true
 
-image::jugsummercamp.png[float="right"]
+image::images/jugsummercamp.png[float="right"]
 
 == Me
 
-image::avatar.png[float="right"]
+image::images/avatar.png[float="right"]
 
 icon:twitter[] @binout +
 icon:github[] https://github.com/binout
 
 * Développeur Java depuis plus de 10 ans
 
-image::bordeauxjug.png[float="right"]
+image::images/bordeauxjug.png[float="right"]
 
 * Membre du Bordeaux JUG
 
-image::asciidoctor.png[float="right"]
+image::images/asciidoctor.png[float="right"]
 
 * Commiteur Asciidoctor
 
-image::lectra.png[float="right"]
+image::images/lectra.png[float="right"]
 
 * Technical Leader chez Lectra,
 numéro un mondial des solutions dédiées à l'industrie du textile (machines et logiciels)
