@@ -18,7 +18,7 @@ after_failure:
 
 after_success:
   - cd output ; mv README.html index.html ; cp -R ../images images
-  - mkdir deckjs ; curl -LkSs https://github.com/imakewebthings/deck.js/archive/1.1.0.tar.gz | tar xfz - -C deckjs --strip-components=1
+  - mkdir deck.js ; curl -LkSs https://github.com/imakewebthings/deck.js/archive/1.1.0.tar.gz | tar xfz - -C deck.js --strip-components=1
   - git init
   - git config user.name "${GH_USER_NAME}"
   - git config user.email "{GH_USER_EMAIL}"
