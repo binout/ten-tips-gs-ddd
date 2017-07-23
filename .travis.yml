@@ -5,7 +5,7 @@ services:
 
 before_install:
   - mkdir -p output
-  - docker pull asciidoctor/docker-asciidoctor
+  - docker pull binout/docker-asciidoctor-deckjs
 
 script:
   - docker run -v $TRAVIS_BUILD_DIR:/documents/ --name asciidoc-to-deckjs binout/docker-asciidoctor-deckjs asciidoctor -T /asciidoctor-backends/haml/deckjs -D /documents/output *.adoc
