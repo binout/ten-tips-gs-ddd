@@ -30,18 +30,97 @@ image::images/lectra.png[float="right"]
 * Technical Leader chez Lectra,
 numéro un mondial des solutions dédiées à l'industrie du textile (machines et logiciels)
 
-== TODO
+== Domain Driven Design
 
-* Nommage des entités et services
-* Structure de package
-* Test BDD
-* Documentation annotation sur les principes
-* Living documentation : domain diagram
-* Dépasser les a priori
-** Jpa / xml
-** injection par Constructeur
-** Constructeur / getter / setter
-* Application Service
-* Ddd vite fait
-* Framework à l'extérieur
+Eric Evans
+2004
+Tackling Complexity in the Heart of Software
+
+== Pourquoi DDD ?
+
+Solution générique pour des problèmes métiers spécifiques
+
+== Par où commencer ?
+
+Blue Book
+
+== Conseil 1
+
+DDD Vite Fait, 30 pages en français
+
+== Conseil 2
+
+Mettre le focus sur la modélisation du métier
+
+* Le domaine n'a aucune dépendance à des composants techniques
+* Définir un vocabulaire
+* Bien réfléchir aux propriétés des entités (modifiable ? valeur par défault ?)
+** éviter les POJOs anémiques, par défaut pas de getter/setter
+*  faire du mob programming
+* bien définir des agrégats
+
+TODO Exemple
+
+== Conseil 3
+
+https://twitter.com/Ouarzy/status/881970932927139841
+
+Commencer par une persistence en mémoire (hashmap) pour éviter de lier son domaine
+à des problèmatiques techniques
+
+Utiliser des UUIDs générés par l'application
+
+== Conseil 4
+
+S'appuyer sur une architecture hexagonale
+
+* domain
+* application
+* interfaces
+* infrastructure
+
+Si besoin multi module maven
+
+== Conseil 5
+
+La couche application doit définir des cas d'utilisation
+
+* Une classe avec une seule méthode -> un cas d'utilisation
+* pas d'appel entre deux services d'application
+* permet d'écrire des tests indépendamment du moyen de communication
+
+== Conseil 6
+
+Introduire domain service quand une règle métier est partagé par deux services d'application
+
+== Conseil 7
+
+Living Documentation
+
+* annotation DDD.Entity,  DDD.Repository
+* diagramme du domain
+
+== Conseil 8
+
+Dépasser ses a priori sur la programmation
+
+* Jpa / xml
+* injection par Constructeur
+
+== Conseil 9
+
+Commencer à faire du BDD
+Permet de manipuler le domaine dans fichier feature
+
+== Conseil 10
+
 * Impliquer son PO
+* Lui expliquer les concepts
+* Lui montrer le modèle, lui demander si le vocabulaire lui parle
+* Lui montrer les tests BDD
+
+== Conclusion
+
+* Not a silver bullet
+* https://twitter.com/ouarzy/status/886868878764146688
+* Permet de passer une étape dans votre parcours de développeur
