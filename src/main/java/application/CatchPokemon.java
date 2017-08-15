@@ -13,18 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package application;
 
-import java.util.Objects;
+import domain.Pokemon;
+import domain.PokemonBox;
 
-public class PokemonType {
+// tag::catch[]
+public class CatchPokemon {
 
-    private final String value;
+    private final PokemonBox box;
 
-    public PokemonType(String value) {
-        this.value = Objects.requireNonNull(value);
+    public CatchPokemon(PokemonBox box) {
+        this.box = box;
     }
 
-    public String value() {
-        return value;
+    public void execute(Pokemon pokemon) {
+        if (pokemon.isDead()) {
+            throw new RuntimeException("Cannot catch dead pokemon !");
+        }
+        this.box.add(pokemon);
     }
 }
+//end::catch[]

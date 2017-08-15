@@ -1,4 +1,4 @@
-/*
+package domain;/*
  * Copyright 2016 Benoît Prioux
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,6 +30,10 @@ public class Pokemon {
         this.type = Objects.requireNonNull(type);
         this.name = type.value();
         this.pv = 100;
+    }
+
+    public String id() {
+        return id;
     }
 
     public PokemonType type() {

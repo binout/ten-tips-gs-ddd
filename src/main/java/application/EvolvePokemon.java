@@ -13,26 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+package application;
 
-import java.util.*;
+import domain.Pokemon;
+import domain.PokemonType;
 
-// tag::db[]
-public class InMemoryPokemonBox implements PokemonBox {
+import java.util.Optional;
 
-    private final Map<String, Pokemon> database;
+// tag::evolve[]
+public class EvolvePokemon {
 
-    public InMemoryPokemonBox() {
-        database = new HashMap<>();
+    public Optional<Pokemon> execute(Pokemon pokemon) {
+        return findEvolveType(pokemon).map(pokemon::evolve);
     }
 
-    @Override
-    public Optional<Pokemon> byName(String name) {
-        return database.values().stream().filter(p -> p.name().equals(name)).findFirst();
-    }
-
-    @Override
-    public List<Pokemon> all() {
-        return new ArrayList<>(database.values());
+    private Optional<PokemonType> findEvolveType(Pokemon pokemon) {
+        // find evolve type for this pokemon
+        return Optional.empty();
     }
 }
-// end::db[]
+// end:evolve[]

@@ -85,21 +85,21 @@ Un Pokemon :
 
 [source,java]
 ----
-include::{src}/bad/Pokemon.java[tags=pojo]
+include::{src}/domain/bad/Pokemon.java[tags=pojo]
 ----
 
 == Constructeur et propriété
 
 [source,java]
 ----
-include::{src}/Pokemon.java[tags=new]
+include::{src}/domain/Pokemon.java[tags=new]
 ----
 
 == Métier dans le modèle
 
 [source,java]
 ----
-include::{src}/Pokemon.java[tags=business]
+include::{src}/domain/Pokemon.java[tags=business]
 ----
 
 == Conseil 3
@@ -116,14 +116,14 @@ image::images/twitter-ouarzy.png[]
 
 [source,java]
 ----
-include::{src}/PokemonBox.java[]
+include::{src}/domain/PokemonBox.java[]
 ----
 
 == Exemple : InMemory Repository
 
 [source,java]
 ----
-include::{src}/InMemoryPokemonBox.java[tags=db]
+include::{src}/infrastructure/persistence/InMemoryPokemonBox.java[tags=db]
 ----
 
 == Conseil 4
@@ -135,56 +135,92 @@ image::images/hexagonal.png[float=right]
 
 * domain
 * application
-* interfaces
+* interface
 * infrastructure
 
 == Conseil 5
 
-La couche application doit définir des cas d'utilisation
+[quote]
+5) La couche application doit définir des cas d'utilisation
 
-* Une classe avec une seule méthode -> un cas d'utilisation
+* un cas d'utilisation -> une classe avec une seule méthode
 * pas d'appel entre deux services d'application
-* permet d'écrire des tests indépendamment du moyen de communication
+* permet d'écrire des tests indépendamment du protocol de l'interface
 
-== Exemple
+== Exemple : Evolution Pokemon
 
-* RenamePokemon
-* EvoluatePokemon
-* RessurectPokemon
-* CatchPokemon
+[source,java]
+----
+include::{src}/application/EvolvePokemon.java[tags=evolve]
+----
+
+== Exemple : Catch Pokemon
+
+[source,java]
+----
+include::{src}/application/CatchPokemon.java[tags=catch]
+----
 
 == Conseil 6
 
-Introduire domain service quand une règle métier est partagé par deux services d'application
+[quote]
+6) Bien comprendre la notion de service du domaine
+
+* C'est un service dans la couche `domain`
+* Introduire domain service quand une règle métier est partagé par deux services d'application
 
 == Conseil 7
 
-Living Documentation
+[quote]
+7) Living Documentation FTW !
 
-* annotation DDD.Entity,  DDD.Repository
-* diagramme du domain
+* Annotations :
+** @DDD.Entity,  @DDD.Repository, @DDD.DomainService
+
+* Générer un diagramme du domain à partir des sources
+
+* Générer un diagramme des dépendances de l'architecture hexagonale
+
 
 == Conseil 8
 
-Dépasser ses a priori sur la programmation
+[quote]
+8) Dépasser ses à-priori de développeur !
 
-* Jpa / xml
-* injection par Constructeur
+* Des habitudes de développement liées à notre apprentissage des frameworks...
+* Le plus important c'est le métier pas la technique !
+
+== Exemples
+
+* Injection par constructeur vs Injection par champ
+
+* Mapping JPA par annotations _pollue_ le domaine
+** Utilisation de `orm.xml`
+** pas de problème particulier
+** support de l'ide
+** plus d'annotations dans notre domaine !
+
 
 == Conseil 9
 
-Commencer à faire du BDD
-Permet de manipuler le domaine dans fichier feature
+[quote]
+9) Faire des tests d'intégration en utilisant le BDD
+
+* Permet de manipuler le domaine dans les tests (fichier _feature_)
 
 == Conseil 10
 
-* Impliquer son PO
-* Lui expliquer les concepts
-* Lui montrer le modèle, lui demander si le vocabulaire lui parle
+[quote]
+9) Impliquer son Product Owner
+
+* Lui expliquer les concepts, la démarche
+* Lui montrer le modèle
+* Lui demander si le vocabulaire lui parle
 * Lui montrer les tests BDD
+* Lui demander de les écrire ;-)
 
-== Conclusion
+== Conclusion : Not a silver bullet but ...
 
-* Not a silver bullet
-* https://twitter.com/ouarzy/status/886868878764146688
-* Permet de passer une étape dans votre parcours de développeur
+image::images/twitter-ouarzy2.png[]
+
+* Permet de passer une étape dans votre parcours de développeur !

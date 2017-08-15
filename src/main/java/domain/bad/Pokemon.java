@@ -1,4 +1,4 @@
-package bad;
+package domain.bad;
 
 // tag::pojo[]
 public class Pokemon {
