@@ -6,6 +6,8 @@
 :goto: true
 :status: true
 
+:src: src/main/java
+
 image::images/jugsummercamp.png[float="right"]
 
 == Me
@@ -32,54 +34,109 @@ numéro un mondial des solutions dédiées à l'industrie du textile (machines e
 
 == Domain Driven Design
 
-Eric Evans
-2004
+[quote, Eric Evans, 2003]
 Tackling Complexity in the Heart of Software
+
+image::images/blue-book.png[]
 
 == Pourquoi DDD ?
 
-Solution générique pour des problèmes métiers spécifiques
+* Existe-il une solution générique pour des problèmes métiers spécifiques ?
 
-== Par où commencer ?
-
-Blue Book
+* Notre but :
+** réduire la complexité accidentelle pour se concentrer sur la complexité métier
+** comprendre le domain métier
+** mieux communiquer avec les différents intervenants
 
 == Conseil 1
 
-DDD Vite Fait, 30 pages en français
+image::images/DDDViteFait.png[float=right]
+
+[quote]
+1) Lire Domain-Driven Design Vite fait
+
+
+https://www.infoq.com/fr/minibooks/domain-driven-design-quickly
 
 == Conseil 2
 
-Mettre le focus sur la modélisation du métier
+[quote]
+2) Mettre le focus sur la modélisation du métier
 
-* Le domaine n'a aucune dépendance à des composants techniques
-* Définir un vocabulaire
-* Bien réfléchir aux propriétés des entités (modifiable ? valeur par défault ?)
-** éviter les POJOs anémiques, par défaut pas de getter/setter
-*  faire du mob programming
-* bien définir des agrégats
+* Permet de définir un vocabulaire (`Ubiquitous Language`)
+* Bien réfléchir aux propriétés des entités
+* Bien définir des agrégats
+* Rester indépendant de tous composants techniques (persistence, sérialisation)
 
-TODO Exemple
+== Exemple : Pokemon
+
+image::images/pikachu.png[float=right]
+
+Un Pokemon :
+
+* A un type (`pikachu`)
+* A un nom (par défaut type)
+* A des PV (par défaut 100)
+* Peut être nommé
+* Peut évolué
+* Peut mourrir ...
+
+== POJO : ce n'est pas un modèle !
+
+[source,java]
+----
+include::{src}/bad/Pokemon.java[tags=pojo]
+----
+
+== Constructeur et propriété
+
+[source,java]
+----
+include::{src}/Pokemon.java[tags=new]
+----
+
+== Métier dans le modèle
+
+[source,java]
+----
+include::{src}/Pokemon.java[tags=business]
+----
 
 == Conseil 3
 
-https://twitter.com/Ouarzy/status/881970932927139841
+image::images/twitter-ouarzy.png[]
 
-Commencer par une persistence en mémoire (hashmap) pour éviter de lier son domaine
+
+* Commencer par une persistence en mémoire (hashmap) pour éviter de lier son domaine
 à des problèmatiques techniques
 
-Utiliser des UUIDs générés par l'application
+* Utiliser des UUIDs générés par l'application comme id
+
+== Exemple : Interface Repository
+
+[source,java]
+----
+include::{src}/PokemonBox.java[]
+----
+
+== Exemple : InMemory Repository
+
+[source,java]
+----
+include::{src}/InMemoryPokemonBox.java[tags=db]
+----
 
 == Conseil 4
 
-S'appuyer sur une architecture hexagonale
+[quote]
+4) S'appuyer sur une architecture hexagonale
+
+image::images/hexagonal.png[float=right]
 
 * domain
 * application
 * interfaces
 * infrastructure
-
-Si besoin multi module maven
 
 == Conseil 5
 
@@ -88,6 +145,13 @@ La couche application doit définir des cas d'utilisation
 * Une classe avec une seule méthode -> un cas d'utilisation
 * pas d'appel entre deux services d'application
 * permet d'écrire des tests indépendamment du moyen de communication
+
+== Exemple
+
+* RenamePokemon
+* EvoluatePokemon
+* RessurectPokemon
+* CatchPokemon
 
 == Conseil 6
 
