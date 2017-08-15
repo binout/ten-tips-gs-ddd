@@ -204,14 +204,14 @@ include::{src}/application/CatchPokemon.java[tags=catch]
 == Conseil 9
 
 [quote]
-9) Faire des tests d'intégration en utilisant le BDD
+9) Faire des tests d'intégration en utilisant le Behavior Driven Development
 
 * Permet de manipuler le domaine dans les tests (fichier _feature_)
 
 == Conseil 10
 
 [quote]
-9) Impliquer son Product Owner
+10) Impliquer son Product Owner
 
 * Lui expliquer les concepts, la démarche
 * Lui montrer le modèle
