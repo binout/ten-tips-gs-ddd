@@ -167,39 +167,95 @@ include::{src}/application/CatchPokemon.java[tags=catch]
 6) Bien comprendre la notion de service du domaine
 
 * C'est un service dans la couche `domain`
-* Introduire domain service quand une règle métier est partagé par deux services d'application
+* Introduire un service du domaine quand une règle métier est partagé par deux cas d'utilisation (services d'application)
 
 == Conseil 7
+
+image::images/living-doc.png[float=right]
 
 [quote]
 7) Living Documentation FTW !
 
 * Annotations :
-** @DDD.Entity,  @DDD.Repository, @DDD.DomainService
+** `@DDD.Entity`,  `@DDD.Repository`, `@DDD.DomainService`, ...
 
 * Générer un diagramme du domain à partir des sources
 
 * Générer un diagramme des dépendances de l'architecture hexagonale
 
-
 == Conseil 8
 
 [quote]
-8) Dépasser ses à-priori de développeur !
+8) Se débarrasser de ses à-priori de développeur !
 
 * Des habitudes de développement liées à notre apprentissage des frameworks...
 * Le plus important c'est le métier pas la technique !
 
-== Exemples
+== Exemple : Injection par champ VS par constructeur ?
 
-* Injection par constructeur vs Injection par champ
+.Par champ
+[source, java]
+----
+public class CatchPokemon {
+
+    @Inject
+    private final PokemonBox box;
+
+----
+
+.Par constructeur
+[source, java]
+----
+public class CatchPokemon {
+
+    private final PokemonBox box;
+
+    @Inject
+    public CatchPokemon(PokemonBox box) {
+        this.box = box;
+    }
+    ...
+----
+
+== Injection par constructeur !
+
+* Plus facile à tester
+** plus de besoin d'un setter ou de changer la visibilité pour les tests
+** plus maintenable lors de l'ajout de nouvelles dépendances
+
+* Un objet est dans un état cohérent après l'appel du constructeur quelque soit le contexte :
+** framework d'injection de dépendance
+** tests unitaires
+
+== Exemple : Annotation JPA
+
+[source, java]
+----
+public class Pokemon {
+
+    @Id
+    private final String id;
+    @Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name="value", column=@Column(name="TYPE"))
+    })
+    private final PokemonType type;
+    @Column(name = "name", columnDefinition = "VARCHAR(255)")
+    private String name;
+    @Column(name = "pv",length=2, nullable = false)
+    private int pv;
+    ....
+}
+----
+
+== XML configuration !
 
 * Mapping JPA par annotations _pollue_ le domaine
-** Utilisation de `orm.xml`
-** pas de problème particulier
-** support de l'ide
-** plus d'annotations dans notre domaine !
 
+* Utilisation de `META-INF/orm.xml`
+** moyen de sortir le framework du domaine
+** tout aussi facile à écrire et à maintenir
+** support dans l'ide
 
 == Conseil 9
 
@@ -207,6 +263,20 @@ include::{src}/application/CatchPokemon.java[tags=catch]
 9) Faire des tests d'intégration en utilisant le Behavior Driven Development
 
 * Permet de manipuler le domaine dans les tests (fichier _feature_)
+
+== Exemple de feature
+
+[source]
+----
+Scenario: Some determinable business situation
+   Given some precondition
+     And some other precondition
+    When some action by the actor
+     And some other action
+     And yet another action
+    Then some testable outcome is achieved
+     And something else we can check happens too
+----
 
 == Conseil 10
 
