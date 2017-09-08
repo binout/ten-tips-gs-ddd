@@ -8,7 +8,7 @@ before_install:
   - docker pull binout/docker-asciidoctor-deckjs
 
 script:
-  - docker run -v $TRAVIS_BUILD_DIR:/documents/ --name asciidoc-to-deckjs binout/docker-asciidoctor-deckjs asciidoctor -a data-uri -a coderay-css=style -T /asciidoctor-backends/haml/deckjs -D /documents/output *.adoc
+  - docker run -v $TRAVIS_BUILD_DIR:/documents/ --name asciidoc-to-deckjs binout/docker-asciidoctor-deckjs asciidoctor -T /asciidoctor-backends/haml/deckjs -D /documents/output *.adoc
 
 after_error:
   - docker logs asciidoc-to-deckjs
