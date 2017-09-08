@@ -138,6 +138,10 @@ image::images/hexagonal.png[float=right]
 * interface
 * infrastructure
 
+== Architecture Hexagonale - Ports & Adaptateurs
+
+image::images/ddd-hexagonal.png[]
+
 == Conseil 5
 
 [quote]
