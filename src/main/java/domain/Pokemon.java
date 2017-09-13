@@ -50,6 +50,7 @@ public class Pokemon {
 // end::new[]
 
 // tag::business[]
+
     public void die() {
         this.pv = 0;
     }

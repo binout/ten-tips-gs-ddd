@@ -42,12 +42,11 @@ image::images/blue-book.png[]
 
 == Pourquoi DDD ?
 
-* Existe-il une solution générique pour des problèmes métiers spécifiques ?
+image::images/twitter-cyriux.png[]
 
-* Notre but :
-** réduire la complexité accidentelle pour se concentrer sur la complexité métier
-** comprendre le domain métier
-** mieux communiquer avec les différents intervenants
+* réduire la complexité accidentelle pour se concentrer sur la complexité métier
+* comprendre le domain métier
+* mieux communiquer avec les différents intervenants
 
 == Conseil 1
 
@@ -134,12 +133,14 @@ include::{src}/infrastructure/persistence/InMemoryPokemonBox.java[tags=db]
 
 image::images/hexagonal.png[float=right]
 
+http://alistair.cockburn.us/Hexagonal+architecture
+
 * domain
 * application
 * interface
 * infrastructure
 
-== Architecture Hexagonale - Ports & Adaptateurs
+== Ports & Adapters
 
 image::images/ddd-hexagonal.png[]
 
@@ -273,15 +274,15 @@ public class Pokemon {
 
 [source]
 ----
-Scenario: Some determinable business situation
-   Given some precondition
-     And some other precondition
-    When some action by the actor
-     And some other action
-     And yet another action
-    Then some testable outcome is achieved
-     And something else we can check happens too
+Scenario: Catch a pokemon
+   Given a pikachu with PV=512
+   When you give a cloudberry
+     And you throw a pokeball
+   Then the pikachu is caught
+     And you win 500 XP
 ----
+
+image::images/cucumber.png[float=right]
 
 == Conseil 10
 
