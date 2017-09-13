@@ -44,8 +44,8 @@ image::images/blue-book.png[]
 
 image::images/twitter-cyriux.png[]
 
+* comprendre le domaine métier
 * réduire la complexité accidentelle pour se concentrer sur la complexité métier
-* comprendre le domain métier
 * mieux communiquer avec les différents intervenants
 
 == Conseil 1
@@ -115,11 +115,11 @@ image::images/twitter-ouarzy.png[]
 == Conseil 4
 
 [quote]
-4) S'appuyer sur une architecture hexagonale (Alistair Cockburn)
+4) S'appuyer sur une architecture hexagonale
 
 http://alistair.cockburn.us/Hexagonal+architecture
 
-image::images/hexagonal.png[]
+image::images/alistair.png[]
 
 == Ports & Adapters
 
@@ -151,10 +151,11 @@ include::{src}/application/CatchPokemon.java[tags=catch]
 == Conseil 6
 
 [quote]
-6) Bien comprendre la notion de service du domaine
+6) Bien comprendre la notion de service
 
-* C'est un service dans la couche `domain`
-* Introduire un service du domaine quand une règle métier est partagé par deux cas d'utilisation (services d'application)
+* *Service d'applications* : cas d'utilisation
+* *Service du domaine* : règle métier partagée entre deux cas d'utilisation
+* *Service d'infrastructure* : communication avec les systèmes externes
 
 == Conseil 7
 
@@ -166,7 +167,7 @@ image::images/living-doc.png[float=right]
 * Annotations :
 ** `@DDD.Entity`,  `@DDD.Repository`, `@DDD.DomainService`, ...
 
-* Générer un diagramme du domain à partir des sources
+* Générer un diagramme du domaine à partir des sources
 
 * Générer un diagramme des dépendances de l'architecture hexagonale
 
