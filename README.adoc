@@ -112,33 +112,14 @@ image::images/twitter-ouarzy.png[]
 
 * Utiliser des UUIDs générés par l'application comme id
 
-== Exemple : Interface Repository
-
-[source,java]
-----
-include::{src}/domain/PokemonBox.java[]
-----
-
-== Exemple : InMemory Repository
-
-[source,java]
-----
-include::{src}/infrastructure/persistence/InMemoryPokemonBox.java[tags=db]
-----
-
 == Conseil 4
 
 [quote]
-4) S'appuyer sur une architecture hexagonale
-
-image::images/hexagonal.png[float=right]
+4) S'appuyer sur une architecture hexagonale (Alistair Cockburn)
 
 http://alistair.cockburn.us/Hexagonal+architecture
 
-* domain
-* application
-* interface
-* infrastructure
+image::images/hexagonal.png[]
 
 == Ports & Adapters
 
@@ -196,42 +177,6 @@ image::images/living-doc.png[float=right]
 
 * Des habitudes de développement liées à notre apprentissage des frameworks...
 * Le plus important c'est le métier pas la technique !
-
-== Exemple : Injection par champ VS par constructeur ?
-
-.Par champ
-[source, java]
-----
-public class CatchPokemon {
-
-    @Inject
-    private final PokemonBox box;
-
-----
-
-.Par constructeur
-[source, java]
-----
-public class CatchPokemon {
-
-    private final PokemonBox box;
-
-    @Inject
-    public CatchPokemon(PokemonBox box) {
-        this.box = box;
-    }
-    ...
-----
-
-== Injection par constructeur !
-
-* Plus facile à tester
-** plus de besoin d'un setter ou de changer la visibilité pour les tests
-** plus maintenable lors de l'ajout de nouvelles dépendances
-
-* Un objet est dans un état cohérent après l'appel du constructeur quelque soit le contexte :
-** framework d'injection de dépendance
-** tests unitaires
 
 == Exemple : Annotation JPA
 

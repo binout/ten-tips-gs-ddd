@@ -43,14 +43,9 @@ public class Pokemon {
     public String name() {
         return  name;
     }
-
-    public boolean isDead() {
-        return this.pv == 0;
-    }
 // end::new[]
 
 // tag::business[]
-
     public void die() {
         this.pv = 0;
     }
