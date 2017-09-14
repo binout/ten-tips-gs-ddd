@@ -1,6 +1,6 @@
 = 10 conseils pour réussir ses premiers pas en DDD
 :icons: font
-:coderay-css: style
+:source-highlighter: highlightjs
 :deckjs_theme: swiss
 :deckjs_transition: fade
 :navigation: true
@@ -78,8 +78,8 @@ Un Pokemon :
 * A un nom (par défaut type)
 * A des PV (par défaut 100)
 * Peut être nommé
-* Peut évolué
-* Peut mourrir ...
+* Peut évoluer
+* Peut mourir ...
 
 == POJO : ce n'est pas un modèle !
 
@@ -106,7 +106,6 @@ include::{src}/domain/Pokemon.java[tags=business]
 
 image::images/twitter-ouarzy.png[]
 
-
 * Commencer par une persistence en mémoire (hashmap) pour éviter de lier son domaine
 à des problèmatiques techniques
 
@@ -124,6 +123,10 @@ image::images/alistair.png[]
 == Ports & Adapters
 
 image::images/ddd-hexagonal.png[]
+
+== Dépendances dans l'hexagone
+
+image::images/hexagonal.png[]
 
 == Conseil 5
 
