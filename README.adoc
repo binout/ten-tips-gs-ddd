@@ -1,5 +1,4 @@
 = 10 conseils pour réussir ses premiers pas en DDD
-:icons: font
 :source-highlighter: highlightjs
 :deckjs_theme: swiss
 :deckjs_transition: fade
@@ -135,7 +134,7 @@ image::images/hexagonal.png[]
 
 * un cas d'utilisation -> une classe avec une seule méthode
 * pas d'appel entre deux services d'application
-* permet d'écrire des tests indépendamment du protocol de l'interface
+* permet d'écrire des tests indépendamment du protocole de l'interface
 
 == Exemple : Evolution Pokemon
 
