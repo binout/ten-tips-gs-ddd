@@ -8,7 +8,7 @@
 
 :src: src/main/java
 
-image::images/jugsummercamp.png[float="right"]
+image::images/bdx-io.png[float="right"]
 
 == Me
 
