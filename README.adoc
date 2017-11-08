@@ -1,4 +1,5 @@
 = 10 conseils pour réussir ses premiers pas en DDD
+:icons: font
 :source-highlighter: highlightjs
 :deckjs_theme: swiss
 :deckjs_transition: fade
