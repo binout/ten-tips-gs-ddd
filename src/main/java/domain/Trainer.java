@@ -13,27 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package application;
+package domain;
 
-import domain.Pokemon;
-import domain.PokemonBox;
-import domain.Trainer;
+public class Trainer {
 
-// tag::catch[]
-public class CatchPokemon {
+    private final String name;
+    private int candies;
 
-    private final PokemonBox box;
-
-    public CatchPokemon(PokemonBox box) {
-        this.box = box;
+    public Trainer(String name) {
+        this.name = name;
+        this.candies = 0;
     }
 
-    public void execute(Trainer trainer, Pokemon pokemon) {
-        if (pokemon.isDead()) {
-            throw new RuntimeException("Cannot catch dead pokemon !");
-        }
-        this.box.add(pokemon);
-        trainer.addCandies(3);
+    public String name() {
+        return name;
+    }
+
+    public void addCandies(int nbCandies) {
+        this.candies += nbCandies;
+    }
+
+    public void removeCandies(int nbCandies) {
+        this.candies += nbCandies;
+    }
+
+    public int candies() {
+        return this.candies;
     }
 }
-//end::catch[]

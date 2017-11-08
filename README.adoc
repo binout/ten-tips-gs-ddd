@@ -156,8 +156,15 @@ include::{src}/application/CatchPokemon.java[tags=catch]
 6) Bien comprendre la notion de service
 
 * *Service d'applications* : cas d'utilisation
-* *Service du domaine* : règle métier partagée entre deux cas d'utilisation
 * *Service d'infrastructure* : communication avec les systèmes externes
+* *Service du domaine* : règle métier partagée entre deux cas d'utilisation
+
+== Exemple : Domain Service
+
+[source,java]
+----
+include::{src}/domain/PokemonStatsCalculation.java[tags=domainService]
+----
 
 == Conseil 7
 

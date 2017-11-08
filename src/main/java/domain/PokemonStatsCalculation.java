@@ -13,27 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package application;
+package domain;
 
-import domain.Pokemon;
-import domain.PokemonBox;
-import domain.Trainer;
+// tag::domainService[]
+public class PokemonStatsCalculation {
 
-// tag::catch[]
-public class CatchPokemon {
-
-    private final PokemonBox box;
-
-    public CatchPokemon(PokemonBox box) {
-        this.box = box;
+    int attack(Pokemon pokemon) {
+         return awesomeAlgo(pokemon);
     }
 
-    public void execute(Trainer trainer, Pokemon pokemon) {
-        if (pokemon.isDead()) {
-            throw new RuntimeException("Cannot catch dead pokemon !");
-        }
-        this.box.add(pokemon);
-        trainer.addCandies(3);
+    int defense(Pokemon pokemon) {
+        return awesomeAlgo(pokemon);
+    }
+
+    int stamina(Pokemon pokemon) {
+        return awesomeAlgo(pokemon);
+    }
+// end::domainService[]
+
+    private int awesomeAlgo(Pokemon pokemon) {
+        return 0;
     }
 }
-//end::catch[]

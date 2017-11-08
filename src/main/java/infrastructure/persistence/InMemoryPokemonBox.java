@@ -34,6 +34,11 @@ public class InMemoryPokemonBox implements PokemonBox {
     }
 
     @Override
+    public void remove(Pokemon pokemon) {
+        database.remove(pokemon.id());
+    }
+
+    @Override
     public Optional<Pokemon> byName(String name) {
         return database.values().stream().filter(p -> p.name().equals(name)).findFirst();
     }

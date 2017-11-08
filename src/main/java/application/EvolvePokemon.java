@@ -16,20 +16,28 @@
 package application;
 
 import domain.Pokemon;
-import domain.PokemonType;
-
-import java.util.Optional;
+import domain.PokemonBox;
+import domain.Trainer;
 
 // tag::evolve[]
 public class EvolvePokemon {
 
-    public Optional<Pokemon> execute(Pokemon pokemon) {
-        return findEvolveType(pokemon).map(pokemon::evolve);
+    private final PokemonBox box;
+
+    public EvolvePokemon(PokemonBox box) {
+        this.box = box;
     }
 
-    private Optional<PokemonType> findEvolveType(Pokemon pokemon) {
-        // find evolve type for this pokemon
-        return Optional.empty();
+    public Pokemon execute(Trainer trainer, Pokemon pokemon) {
+        if (trainer.candies() > 50) {
+            Pokemon evolvedPokemon = pokemon.evolve()
+                    .orElseThrow(() -> new RuntimeException("This pokemon cannot evoluate"));
+            this.box.remove(pokemon);
+            this.box.add(evolvedPokemon);
+            trainer.removeCandies(50);
+            return evolvedPokemon;
+        }
+        throw new RuntimeException("Not enough candies to evolve this pokemon");
     }
 }
 // end::evolve[]

@@ -15,6 +15,7 @@ package domain;/*
  */
 
 import java.util.Objects;
+import java.util.Optional;
 import java.util.UUID;
 
 // tag::new[]
@@ -46,6 +47,10 @@ public class Pokemon {
 // end::new[]
 
 // tag::business[]
+    public boolean isDead() {
+        return this.pv == 0;
+    }
+
     public void die() {
         this.pv = 0;
     }
@@ -54,11 +59,14 @@ public class Pokemon {
         this.name = newName;
     }
 
-    public Pokemon evolve(PokemonType pokemonType) {
-        Pokemon pokemon = new Pokemon(pokemonType);
-        pokemon.name = this.name;
-        pokemon.pv = this.pv;
-        return pokemon;
+    public Optional<Pokemon> evolve() {
+        return type.evolution()
+                .map(evolutionType -> {
+                    Pokemon pokemon = new Pokemon(evolutionType);
+                    pokemon.name = this.name;
+                    pokemon.pv = this.pv;
+                    return pokemon;
+                });
     }
 // end::business[]
 

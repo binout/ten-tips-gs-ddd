@@ -15,16 +15,27 @@ package domain;/*
  */
 
 import java.util.Objects;
+import java.util.Optional;
 
 public class PokemonType {
 
     private final String value;
+    private PokemonType evolution;
 
     public PokemonType(String value) {
         this.value = Objects.requireNonNull(value);
     }
 
+    public PokemonType(String value, PokemonType evolution) {
+        this.value = Objects.requireNonNull(value);
+        this.evolution = Objects.requireNonNull(evolution);
+    }
+
     public String value() {
         return value;
+    }
+
+    public Optional<PokemonType> evolution() {
+        return Optional.ofNullable(evolution);
     }
 }
