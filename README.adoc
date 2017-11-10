@@ -241,6 +241,8 @@ Scenario: Catch a pokemon
 
 image::images/cucumber.png[float=right]
 
+image::images/pokemongo.png[float=left]
+
 == Conseil 10
 
 [quote]
