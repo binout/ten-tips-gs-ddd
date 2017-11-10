@@ -18,20 +18,26 @@ package domain;
 // tag::domainService[]
 public class PokemonStatsCalculation {
 
+    private final Pokedex pokedex;
+
+    public PokemonStatsCalculation(Pokedex pokedex) {
+        this.pokedex = pokedex;
+    }
+
     int attack(Pokemon pokemon) {
-         return awesomeAlgo(pokemon);
+         return awesomeAlgo(pokedex.baseStatAttack(pokemon));
     }
 
     int defense(Pokemon pokemon) {
-        return awesomeAlgo(pokemon);
+        return awesomeAlgo(pokedex.baseStatDefense(pokemon));
     }
 
     int stamina(Pokemon pokemon) {
-        return awesomeAlgo(pokemon);
+        return awesomeAlgo(pokedex.baseStatStamina(pokemon));
     }
 // end::domainService[]
 
-    private int awesomeAlgo(Pokemon pokemon) {
+    private int awesomeAlgo(Pokedex.BaseStat pokemon) {
         return 0;
     }
 }

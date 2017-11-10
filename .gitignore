@@ -1,4 +1,5 @@
 .DS_Store
 .idea
+*.iml
 # Output directory for HTML files
 output/
