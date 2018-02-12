@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta content="text/html; charset=" http-equiv="Content-Type">
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<meta content="Asciidoctor 1.5.5" name="generator">
+<title>10 conseils pour réussir ses premiers pas en DDD</title>
+<link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css" rel="stylesheet">
+<style>
+.conum { display: inline-block; color: white !important; background-color: #222222; -webkit-border-radius: 100px; border-radius: 100px; text-align: center; width: 1.2em; height: 1.2em; font-size: 0.9em; font-weight: bold; line-height: 1.2; font-family: Arial, sans-serif; font-style: normal; position: relative; top: -0.1em; }
+.conum * { color: white !important; }
+.conum + b { display: none; }
+.conum:after { content: attr(data-value); }
+.conum:not([data-value]):empty { display: none; }
+.colist table td:first-of-type { padding-right: 0.25em; }
+</style>
+<link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css" rel="stylesheet">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad()</script>
+<link href="deck.js/core/deck.core.css" rel="stylesheet">
+<link href="deck.js/extensions/scale/deck.scale.css" media="screen" rel="stylesheet">
+<link href="deck.js/extensions/goto/deck.goto.css" media="screen" rel="stylesheet">
+<link href="deck.js/extensions/navigation/deck.navigation.css" media="screen" rel="stylesheet">
+<link href="deck.js/extensions/status/deck.status.css" media="screen" rel="stylesheet">
+<link href="deck.js/themes/style/swiss.css" media="screen" rel="stylesheet">
+<link href="deck.js/themes/transition/fade.css" media="screen" rel="stylesheet">
+<link href="deck.js/core/print.css" media="print" rel="stylesheet">
+<script src="deck.js/modernizr.custom.js"></script>
+</head>
+<body class="article">
+<div class="deck-container">
+<section class="slide" id="title-slide">
+<h1>10 conseils pour réussir ses premiers pas en DDD</h1>
+</section>
+<div id="preamble">
+<div class="sectionbody">
+<div class="imageblock" style="float: right">
+<div class="content">
+<img alt="tourainetech" src="images/tourainetech.png">
+</div>
+</div>
+</div>
+</div>
+<section class="slide" id="_me">
+<h2>Me</h2>
+<div class="imageblock" style="float: right">
+<div class="content">
+<img alt="avatar" src="images/avatar.png">
+</div>
+</div>
+<div class="paragraph"><p><span class="icon"><i class="icon-twitter"></i></span> @binout<br>
+<span class="icon"><i class="icon-github"></i></span> <a class="bare" href="https://github.com/binout">https://github.com/binout</a></p></div>
+<div class="ulist">
+<ul>
+<li>Développeur Java depuis plus de 10 ans</li>
+<li>Commiteur Asciidoctor (project lead <code>asciidoctor-ant</code>)</li>
+<li>Technical Leader chez Lectra,
+numéro un mondial des solutions dédiées à l&#8217;industrie du textile (machines et logiciels)</li>
+</ul>
+</div>
+<div class="imageblock" style="float: right">
+<div class="content">
+<img alt="lectra" src="images/lectra.png">
+</div>
+</div>
+</section>
+<section class="slide" id="_domain_driven_design">
+<h2>Domain Driven Design</h2>
+<div class="quoteblock">
+<blockquote>
+Tackling Complexity in the Heart of Software
+<div class="attribution">
+<cite>Eric Evans, 2003</cite>
+</div>
+</blockquote>
+</div>
+<div class="imageblock">
+<div class="content">
+<img alt="blue book" src="images/blue-book.png">
+</div>
+</div>
+</section>
+<section class="slide" id="_pourquoi_ddd">
+<h2>Pourquoi DDD ?</h2>
+<div class="imageblock">
+<div class="content">
+<img alt="twitter cyriux" src="images/twitter-cyriux.png">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>comprendre le domaine métier</li>
+<li>réduire la complexité accidentelle pour se concentrer sur la complexité métier</li>
+<li>mieux communiquer avec les différents intervenants</li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_conseil_1">
+<h2>Conseil 1</h2>
+<div class="imageblock" style="float: right">
+<div class="content">
+<img alt="DDDViteFait" src="images/DDDViteFait.png">
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+1) Lire Domain-Driven Design Vite fait
+</blockquote>
+</div>
+<div class="paragraph"><p><a class="bare" href="https://www.infoq.com/fr/minibooks/domain-driven-design-quickly">https://www.infoq.com/fr/minibooks/domain-driven-design-quickly</a></p></div>
+</section>
+<section class="slide" id="_conseil_2">
+<h2>Conseil 2</h2>
+<div class="quoteblock">
+<blockquote>
+2) Mettre le focus sur la modélisation du métier
+</blockquote>
+</div>
+<div class="ulist">
+<ul>
+<li>Permet de définir un vocabulaire (<code>Ubiquitous Language</code>)</li>
+<li>Bien réfléchir aux propriétés des entités</li>
+<li>Bien définir des agrégats</li>
+<li>Rester indépendant de tous composants techniques (persistence, sérialisation)</li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_exemple_pokemon">
+<h2>Exemple : Pokemon</h2>
+<div class="imageblock" style="float: right">
+<div class="content">
+<img alt="pikachu" src="images/pikachu.png">
+</div>
+</div>
+<div class="paragraph"><p>Un Pokemon :</p></div>
+<div class="ulist">
+<ul>
+<li>A un type (<code>pikachu</code>)</li>
+<li>A un nom (par défaut type)</li>
+<li>A des PV (par défaut 100)</li>
+<li>Peut être nommé</li>
+<li>Peut évoluer</li>
+<li>Peut mourir &#8230;&#8203;</li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_pojo_ce_n_est_pas_un_modèle">
+<h2>POJO : ce n&#8217;est pas un modèle !</h2>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="java language-java">public class Pokemon {
+
+    private Long id;
+    private String type;
+    private String name;
+    private int pv;
+
+    public Long getId() {
+        return id;
+    }
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public String getType() {
+        return type;
+    }
+    public void setType(String type) {
+        this.type = type;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public int getPv() {
+        return pv;
+    }
+    public void setPv(int pv) {
+        this.pv = pv;
+    }
+}</code></pre>
+</div>
+</div>
+</section>
+<section class="slide" id="_constructeur_et_propriété">
+<h2>Constructeur et propriété</h2>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="java language-java">public class Pokemon {
+
+    private final String id;
+    private final PokemonType type;
+    private String name;
+    private int pv;
+
+    public Pokemon(PokemonType type) {
+        this.id = UUID.randomUUID().toString();
+        this.type = Objects.requireNonNull(type);
+        this.name = type.value();
+        this.pv = 100;
+    }
+
+    public String id() {
+        return id;
+    }
+
+    public PokemonType type() {
+        return type;
+    }
+
+    public String name() {
+        return  name;
+    }</code></pre>
+</div>
+</div>
+</section>
+<section class="slide" id="_métier_dans_le_modèle">
+<h2>Métier dans le modèle</h2>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="java language-java">public boolean isDead() {
+        return this.pv == 0;
+    }
+
+    public void die() {
+        this.pv = 0;
+    }
+
+    public void rename(String newName) {
+        this.name = newName;
+    }
+
+    public Optional&lt;Pokemon&gt; evolve() {
+        return type.evolution()
+                .map(evolutionType -&gt; {
+                    Pokemon pokemon = new Pokemon(evolutionType);
+                    pokemon.name = this.name;
+                    pokemon.pv = this.pv;
+                    return pokemon;
+                });
+    }</code></pre>
+</div>
+</div>
+</section>
+<section class="slide" id="_conseil_3">
+<h2>Conseil 3</h2>
+<div class="imageblock">
+<div class="content">
+<img alt="twitter ouarzy" src="images/twitter-ouarzy.png">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>Commencer par une persistence en mémoire (hashmap) pour éviter de lier son domaine
+à des problèmatiques techniques</li>
+<li>Utiliser des UUIDs générés par l&#8217;application comme id</li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_conseil_4">
+<h2>Conseil 4</h2>
+<div class="quoteblock">
+<blockquote>
+4) S&#8217;appuyer sur une architecture hexagonale
+</blockquote>
+</div>
+<div class="paragraph"><p><a class="bare" href="http://alistair.cockburn.us/Hexagonal+architecture">http://alistair.cockburn.us/Hexagonal+architecture</a></p></div>
+<div class="imageblock">
+<div class="content">
+<img alt="alistair" src="images/alistair.png">
+</div>
+</div>
+</section>
+<section class="slide" id="_ports_adapters">
+<h2>Ports &amp; Adapters</h2>
+<div class="imageblock">
+<div class="content">
+<img alt="ddd hexagonal" src="images/ddd-hexagonal.png">
+</div>
+</div>
+</section>
+<section class="slide" id="_dépendances_dans_l_hexagone">
+<h2>Dépendances dans l&#8217;hexagone</h2>
+<div class="imageblock">
+<div class="content">
+<img alt="hexagonal" src="images/hexagonal.png">
+</div>
+</div>
+</section>
+<section class="slide" id="_conseil_5">
+<h2>Conseil 5</h2>
+<div class="quoteblock">
+<blockquote>
+5) La couche application doit définir des cas d&#8217;utilisation
+</blockquote>
+</div>
+<div class="ulist">
+<ul>
+<li>un cas d&#8217;utilisation &#8594; une classe avec une seule méthode</li>
+<li>pas d&#8217;appel entre deux services d&#8217;application</li>
+<li>permet d&#8217;écrire des tests indépendamment du protocole de l&#8217;interface</li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_exemple_evolution_pokemon">
+<h2>Exemple : Evolution Pokemon</h2>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="java language-java">public class EvolvePokemon {
+
+    private final PokemonBox box;
+
+    public EvolvePokemon(PokemonBox box) {
+        this.box = box;
+    }
+
+    public Pokemon execute(Trainer trainer, Pokemon pokemon) {
+        if (trainer.candies() &gt; 50) {
+            Pokemon evolvedPokemon = pokemon.evolve()
+                    .orElseThrow(() -&gt; new RuntimeException("This pokemon cannot evoluate"));
+            this.box.remove(pokemon);
+            this.box.add(evolvedPokemon);
+            trainer.removeCandies(50);
+            return evolvedPokemon;
+        }
+        throw new RuntimeException("Not enough candies to evolve this pokemon");
+    }
+}</code></pre>
+</div>
+</div>
+</section>
+<section class="slide" id="_exemple_catch_pokemon">
+<h2>Exemple : Catch Pokemon</h2>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="java language-java">public class CatchPokemon {
+
+    private final PokemonBox box;
+
+    public CatchPokemon(PokemonBox box) {
+        this.box = box;
+    }
+
+    public void execute(Trainer trainer, Pokemon pokemon) {
+        if (pokemon.isDead()) {
+            throw new RuntimeException("Cannot catch dead pokemon !");
+        }
+        this.box.add(pokemon);
+        trainer.addCandies(3);
+    }
+}</code></pre>
+</div>
+</div>
+</section>
+<section class="slide" id="_conseil_6">
+<h2>Conseil 6</h2>
+<div class="quoteblock">
+<blockquote>
+6) Bien comprendre la notion de service
+</blockquote>
+</div>
+<div class="ulist">
+<ul>
+<li><strong>Service d&#8217;applications</strong> : cas d&#8217;utilisation</li>
+<li><strong>Service d&#8217;infrastructure</strong> : communication avec les systèmes externes</li>
+<li><strong>Service du domaine</strong> : règle métier partagée entre deux cas d&#8217;utilisation</li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_exemple_domain_service">
+<h2>Exemple : Domain Service</h2>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="java language-java">public class PokemonStatsCalculation {
+
+    private final Pokedex pokedex;
+
+    public PokemonStatsCalculation(Pokedex pokedex) {
+        this.pokedex = pokedex;
+    }
+
+    int attack(Pokemon pokemon) {
+         return awesomeAlgo(pokedex.baseStatAttack(pokemon));
+    }
+
+    int defense(Pokemon pokemon) {
+        return awesomeAlgo(pokedex.baseStatDefense(pokemon));
+    }
+
+    int stamina(Pokemon pokemon) {
+        return awesomeAlgo(pokedex.baseStatStamina(pokemon));
+    }</code></pre>
+</div>
+</div>
+</section>
+<section class="slide" id="_conseil_7">
+<h2>Conseil 7</h2>
+<div class="imageblock" style="float: right">
+<div class="content">
+<img alt="living doc" src="images/living-doc.png">
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+7) Living Documentation FTW !
+</blockquote>
+</div>
+<div class="ulist">
+<ul>
+<li><p>
+Annotations :<div class="ulist">
+<ul>
+<li><code>@DDD.Entity</code>,  <code>@DDD.Repository</code>, <code>@DDD.DomainService</code>, &#8230;&#8203;</li>
+</ul>
+</div></p></li>
+<li>Générer un diagramme du domaine à partir des sources</li>
+<li>Générer un diagramme des dépendances de l&#8217;architecture hexagonale</li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_conseil_8">
+<h2>Conseil 8</h2>
+<div class="quoteblock">
+<blockquote>
+8) Se débarrasser de ses à-priori de développeur !
+</blockquote>
+</div>
+<div class="ulist">
+<ul>
+<li>Des habitudes de développement liées à notre apprentissage des frameworks&#8230;&#8203;</li>
+<li>Le plus important c&#8217;est le métier pas la technique !</li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_exemple_annotation_jpa">
+<h2>Exemple : Annotation JPA</h2>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="java language-java">public class Pokemon {
+
+    @Id
+    private final String id;
+    @Embedded
+    @AttributeOverrides({
+        @AttributeOverride(name="value", column=@Column(name="TYPE"))
+    })
+    private final PokemonType type;
+    @Column(name = "name", columnDefinition = "VARCHAR(255)")
+    private String name;
+    @Column(name = "pv",length=2, nullable = false)
+    private int pv;
+    ....
+}</code></pre>
+</div>
+</div>
+</section>
+<section class="slide" id="_xml_configuration">
+<h2>XML configuration !</h2>
+<div class="ulist">
+<ul>
+<li>Mapping JPA par annotations <em>pollue</em> le domaine</li>
+<li><p>
+Utilisation de <code>META-INF/orm.xml</code><div class="ulist">
+<ul>
+<li>moyen de sortir le framework du domaine</li>
+<li>tout aussi facile à écrire et à maintenir</li>
+<li>support dans l&#8217;ide</li>
+</ul>
+</div></p></li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_conseil_9">
+<h2>Conseil 9</h2>
+<div class="quoteblock">
+<blockquote>
+9) Faire des tests d&#8217;intégration en utilisant le Behavior Driven Development
+</blockquote>
+</div>
+<div class="ulist">
+<ul>
+<li>Permet de manipuler le domaine dans les tests (fichier <em>feature</em>)</li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_exemple_de_feature">
+<h2>Exemple de feature</h2>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>Scenario: Catch a pokemon
+   Given a pikachu with PV=512
+   When you give a cloudberry
+     And you throw a pokeball
+   Then the pikachu is caught
+     And you win 500 XP</code></pre>
+</div>
+</div>
+<div class="imageblock" style="float: right">
+<div class="content">
+<img alt="cucumber" src="images/cucumber.png">
+</div>
+</div>
+<div class="imageblock" style="float: left">
+<div class="content">
+<img alt="pokemongo" src="images/pokemongo.png">
+</div>
+</div>
+</section>
+<section class="slide" id="_conseil_10">
+<h2>Conseil 10</h2>
+<div class="quoteblock">
+<blockquote>
+10) Impliquer son Product Owner
+</blockquote>
+</div>
+<div class="ulist">
+<ul>
+<li>Lui expliquer les concepts, la démarche</li>
+<li>Lui montrer le modèle</li>
+<li>Lui demander si le vocabulaire lui parle</li>
+<li>Lui montrer les tests BDD</li>
+<li>Lui demander de les écrire ;-)</li>
+</ul>
+</div>
+</section>
+<section class="slide" id="_conclusion_not_a_silver_bullet_but">
+<h2>Conclusion : Not a silver bullet but &#8230;&#8203;</h2>
+<div class="imageblock">
+<div class="content">
+<img alt="twitter ouarzy2" src="images/twitter-ouarzy2.png">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>Permet de passer une étape dans votre parcours de développeur !</li>
+</ul>
+</div>
+</section>
+<div aria-role="navigation">
+<a class="deck-prev-link" href="#" title="Previous">&#8592;</a>
+<a class="deck-next-link" href="#" title="Next">&#8594;</a>
+</div>
+<p aria-role="status" class="deck-status">
+<span class="deck-status-current"></span>
+/
+<span class="deck-status-total"></span>
+</p>
+<form action="." class="goto-form" method="get">
+<label for="goto-slide">Go to Slide:</label>
+<input id="goto-slide" list="goto-datalist" name="slidenum" type="text">
+<datalist id="goto-data-list"></datalist>
+<input type="submit" value="Go">
+</form>
+</div>
+<script src="deck.js/jquery.min.js"></script>
+<script src="deck.js/core/deck.core.js"></script>
+<script src="deck.js/extensions/scale/deck.scale.js"></script>
+<script src="deck.js/extensions/goto/deck.goto.js"></script>
+<script src="deck.js/extensions/navigation/deck.navigation.js"></script>
+<script src="deck.js/extensions/status/deck.status.js"></script>
+<script>
+  (function($, deck, undefined) {
+    $.deck.defaults.keys['previous'] = [8, 33, 37, 39];
+    $.deck.defaults.keys['next'] = [13, 32, 34, 39];
+  
+    $.extend(true, $[deck].defaults, {
+        countNested: false
+    });
+  
+    $.deck('.slide');
+  })(jQuery, 'deck');
+</script>
+<style>
+  .slide.canvas-image {
+  -moz-background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  display: -moz-box;
+  display: -webkit-box;
+  display: -ms-box;
+  display: box;
+  -moz-box-orient: vertical;
+  -webkit-box-orient: vertical;
+  -ms-box-orient: vertical;
+  box-orient: vertical;
+  -moz-box-align: start;
+  -webkit-box-align: start;
+  -ms-box-align: start;
+  box-align: start;
+  -moz-box-pack: start;
+  -webkit-box-pack: start;
+  -ms-box-pack: start;
+  box-pack: start;}
+  
+  .bottom-left {
+    left: 1%;
+    bottom: 20%; }
+  
+  .top-left {
+    left: 1%;
+    top: 20%; }
+  
+  .bottom-right {
+    right: 1%;
+    bottom: 20%; }
+  
+  .top-right {
+    right: 1%;
+    top: 20%; }
+  
+  .center-up {
+    right: 50%;
+    top: 1%;
+  }
+  
+  .center-down {
+    right: 50%;
+    bottom: 1%;
+  }
+  .canvas-image .canvas-caption p {
+    text-align: center;
+    padding-top: 0;
+    padding: 0;
+    -moz-transform: none;
+    -webkit-transform: none;
+    -o-transform: none;
+    -ms-transform: none;
+    transform: none;
+    display: inline;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    font-weight: bold;
+    font-size: 58px;
+    -webkit-box-shadow: 2px 2px 2px #000;
+    -moz-box-shadow: 2px 2px 2px #000;
+    box-shadow: 2px 2px 2px #000;
+    padding: 1rem;
+    color: white; }
+  kbd.keyseq { color: #555555; }
+  kbd:not(.keyseq) {
+    display: inline-block;
+    color: #222222;
+    font-size: 0.7em;
+    line-height: 1.4;
+    background-color: #F7F7F7;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px white inset;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.2), 0 0 0 2px white inset;
+    margin: -0.15em 0.15em 0 0.15em;
+    padding: 0.2em 0.6em;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+  kbd kbd:first-child { margin-left: 0; }
+  kbd kbd:last-child { margin-right: 0; }
+</style>
+</body>
+</html>
