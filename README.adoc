@@ -10,7 +10,7 @@
 
 :src: src/main/java
 
-image::images/bdx-io.png[float="right"]
+image::images/tourainetech.png[float="right"]
 
 == Me
 
@@ -21,18 +21,12 @@ icon:github[] https://github.com/binout
 
 * Développeur Java depuis plus de 10 ans
 
-image::images/bordeauxjug.png[float="right"]
-
-* Membre du Bordeaux JUG
-
-image::images/asciidoctor.png[float="right"]
-
-* Commiteur Asciidoctor
-
-image::images/lectra.png[float="right"]
+* Commiteur Asciidoctor (project lead `asciidoctor-ant`)
 
 * Technical Leader chez Lectra,
 numéro un mondial des solutions dédiées à l'industrie du textile (machines et logiciels)
+
+image::images/lectra.png[float="right"]
 
 == Domain Driven Design
 
